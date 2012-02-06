@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<project name="event-website" default="deploy-release" basedir=".">
+
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+    <classpath>
+      <pathelement location="build/ant-contrib-0.6.jar"/>
+    </classpath>
+  </taskdef>
+  <property file="ant.properties" />
+  <loadfile failonerror="no" srcFile="../version.txt" property="release.version">
+    <filterchain>
+      <striplinebreaks/>
+    </filterchain>
+  </loadfile>
+  <property name="release.filename" value="ews-${release.version}" />
+  <property name="publish.dir" value="/Library/WebServer/Documents/ews/" />
+  <property name="dist.dir" value="../dist/${release.filename}/" />
+  <property name="src.dir" value="../" />
+  
+  <property name="javascript.files" value="modernizr.js, 
+                                      jquery.js,
+                                      bbq.js,
+                                      nivoslider.js
+                                      app.js" />
+  <property name="css.files" value="normalize.css,
+                                    base.css,
+                                    nivoslider.css,
+                                    nivo-default.css,
+                                    kidapt.css" />
+  
+  <property name="concatenated" value="all" />
+  <property description="Google Closure" name="closure-jar" value="build/google-compiler-20110320.jar" />
+  <property description="YUI Compressor" name="yuicompressor-jar" value="build/yuicompressor-2.4.2.jar" />
+  <target name="deploy-release" depends="clean, minify, replace-version, replace-debug" description="Release builder"></target>
+  <target name="replace-version">
+    <replaceregexp match="@VERSION" replace="${release.version}" flags="g" byline="true">
+      <fileset dir="${dist.dir}/lib/js/" includes="*.js"/>
+      <fileset dir="${dist.dir}/lib/css/" includes="*.css"/>
+    </replaceregexp>
+    <replaceregexp match="^\s+[\r\n]" replace=" " flags="g" byline="true">
+        <fileset dir="${dist.dir}" includes="**/*.html"/>
+    </replaceregexp>
+    <echo message="Replaced all @VERSION to ${release.version}." />
+  </target>
+  <target name="replace-debug">
+    <replaceregexp match="\&lt;!--@CSS-DEBUG-OPEN--\&gt;.*\&lt;!--@CSS-DEBUG-CLOSE--\&gt;" replace="" flags="gs" byline="false">
+        <fileset dir="${dist.dir}" includes="**/*.html"/>
+    </replaceregexp>
+    <replaceregexp match="\&lt;!--@JS-DEBUG-OPEN--\&gt;.*\&lt;!--@JS-DEBUG-CLOSE--\&gt;" replace="" flags="gs" byline="false">
+        <fileset dir="${dist.dir}" includes="**/*.html"/>
+    </replaceregexp>
+    <replaceregexp match="\&lt;!--@RELEASE-JS--\&gt;" replace="\&lt;script src='lib/js/${concatenated}.min.js' \&gt;\&lt;/script\&gt;" flags="gs" byline="false">
+        <fileset dir="${dist.dir}" includes="**/*.html"/>
+    </replaceregexp>
+    <replaceregexp match="\&lt;!--@RELEASE-CSS--\&gt;" replace="\&lt;link type='text/css' rel='stylesheet' href='lib/css/${concatenated}.min.css' \&gt;\&lt;/script\&gt;" flags="gs" byline="false">
+        <fileset dir="${dist.dir}" includes="**/*.html"/>
+    </replaceregexp>
+    <echo message="Remove the debug scripts." />
+  </target>
+  <target name="concatenate">
+    <echo message="Building concatenated" />
+    <mkdir dir="${dist.dir}" />
+    <delete file="${dist.dir}/lib/js/${concatenated}.js" />
+    <concat destfile="${dist.dir}/lib/js/${concatenated}.js">
+      <filelist dir="${src.dir}/lib/js/" files="${javascript.files}" />
+    </concat>
+    <echo message="Concatenated built." />
+    <concat destfile="${dist.dir}/lib/css/${concatenated}.css">
+      <filelist dir="${src.dir}/lib/css/" files="${css.files}" />
+    </concat>
+    <echo message="Concatenated CSS." />
+  </target>
+  <target name="minify" depends="concatenate" description="Remove all comments and whitespace, no compression, great in combination with GZip">
+    <echo message="Building minified" />
+    <mkdir dir="${dist.dir}" />
+    <mkdir dir="${dist.dir}/lib/css/" />
+    <mkdir dir="${dist.dir}/lib/js/" />
+    <mkdir dir="${dist.dir}/lib/img/" />
+    <mkdir dir="${dist.dir}/lib/css/assets/" />
+    <apply executable="java" parallel="false">
+      <fileset dir="${dist.dir}/lib/js/" includes="*.js" />
+      <arg line="-jar" />
+      <arg path="${closure-jar}" />
+      <arg value="--warning_level" />
+      <arg value="QUIET" />
+      <arg value="--js_output_file" />
+      <targetfile />
+      <arg value="--js" />
+      <mapper type="glob" from="*.js" to="${dist.dir}/lib/js/*.min.js" />
+    </apply>
+    <apply executable="java" parallel="false">
+      <fileset dir="${dist.dir}/lib/css/" includes="*.css" />
+      <arg line="-jar" />
+      <arg path="${yuicompressor-jar}" />
+      <arg line="--charset utf-8" />
+      <arg line="-v" />
+      <srcfile />
+      <arg line="-o" />
+      <mapper type="glob" from="*.css" to="${dist.dir}/lib/css/*.min.css" />
+      <targetfile/>
+    </apply>
+    <copy todir="${dist.dir}/lib/img" >
+      <fileset dir="${src.dir}/lib/img" />
+    </copy>
+    <copy todir="${dist.dir}/lib/css/assets" >
+      <fileset dir="${src.dir}/lib/css/assets" />
+    </copy>
+    <copy todir="${dist.dir}/" >
+      <fileset dir="${src.dir}" includes="*.html" />
+    </copy>
+    <echo message="Minified built." />
+  </target>
+  <target name="publish">
+    <delete dir="${publish.dir}" />
+    <mkdir dir="${publish.dir}" />
+  	<copy todir="${publish.dir}" verbose="yes">
+      <fileset dir="${dist.dir}" excludes="*.in"/>
+    </copy>
+    <copy file="../htaccess.in" tofile="${publish.dir}.htaccess" verbose="yes">
+    </copy>
+  </target>
+  <target name="clean">
+    <delete dir="../dist" />
+  </target>
+</project>

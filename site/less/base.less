@@ -1,0 +1,15 @@
+/* version : @VERSION */
+
+@import "mixins.less";
+
+.not-ready #main {
+  display:none;
+  opacity:0;
+}
+
+#main {
+  display:block;
+  .transition(0.5s);
+  opacity:1;
+}
+

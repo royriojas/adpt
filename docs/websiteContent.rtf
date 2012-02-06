@@ -1,0 +1,93 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf230
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 ArialMT;\f2\fmodern\fcharset0 Courier;
+}
+{\colortbl;\red255\green255\blue255;\red26\green26\blue26;\red38\green88\blue6;}
+\margl1440\margr1440\vieww13040\viewh12400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 Website information:\
+\
+
+\b 1. General:
+\b0 \
+- We should use a fixed size for the layout (not sure what you think is best: 900px?). On the sides we could use a darker gray than the one used for background.\
+- Colors: The new logo still contains Fushia, so we should continue with the same colors as what you see on the WebSiteExample.jpg\
+- favicon.ico is also provided\
+- The title bar remains constant. Would be nice to change the style of the text to show selected page (maybe by making it bold of making the font slightly larger. We could also use the green fron the logo to show the selected one.\
+- Centered footer below the fushia horizontal line: 1st Line: "Copyright 2012 - Kidapt Inc.", 2nd line: "Contact Us" (pointing to the "info@kidapt.com" email)\
+\
+
+\b 2. The title bar:
+\b0 \
+Logo - Home - About Leo's Pad - About Kidapt - Team   (there are some fonts used for the logo under KidaptLogo, not sure whether we can re-use these fonts as well for the titles).\
+Logo: KidaptLogo.png\
+\
+
+\b 3. Home screen:
+\b0 \
+Just a carousel of 3 images right now: GallyHill.jpg, GallyHome.jpg and LeoHomeInt.jpg. Images would have to be resized to exact size and aspect ratio needed for site (if trouble for you, I can do). Use the carousel you showed me yesterday. We should also change the image automatically every 2 seconds (I let you tune up)\
+\
+
+\b 4. About Leo's Pad
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\i \cf0 Image:
+\i0  LeoHomeSketch.jpg\
+
+\i Text:
+\i0  \
+\pard\pardeftab720
+
+\f1\fs26 \cf2 "Our first offering, Leo\'92s Pad, is based on Leonardo Da Vinci as an 8 year old and a cadre of kid characters, each a playfully re-imagined historical figure, including Gally (Galileo), Shakes (Shakespeare), Flo (Florence Nightingale), etc. Through Leo\'92s Pad we seek to deliver an evergreen subscription service to children and parents, representing much more than the typical single purpose apps that currently exist."\
+\
+
+\f0\b\fs24 \cf0 5. About Kidapt
+\b0 \
+
+\i Image:
+\i0  GallyHomeSketch.jpg\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\i \cf0 Text:
+\f1\i0\fs26 \cf2 \
+\pard\pardeftab720
+\cf2 "Kidapt, Inc. is an innovative media company dedicated to using post-PC device technology, smart storytelling, and research-based curriculum in partnership with Stanford University Researchers to create entertaining and fun content that helps children learn. Our character-based episodic vignettes will initially center around pre-school-aged children, engaging them with puzzles and games interwoven within an immersive story arc that drives kindergarten preparedness.\'a0 Subsequently our platform will expand to address prevailing issues facing the over 42 million \'93early learners\'94 (PreK-6 ages 3-11) in the US. We believe that parents of these early learners, who often share smartphones, tablets and other connected devices with their children, are searching for a richer, more complete outlet that they can rely on to both entertain and educate."\
+\
+\pard\pardeftab720
+
+\b \cf2 6. Team
+\b0 \cf2 \
+\
+Place holder for picture on the left, then on the right of the picture first line is the name in bold, next line title still in bold:\
+ex: P.J. Gunsagar followed by Founder & CEO\
+Then normal text for the bio: ex:\
+\
+Create a list of 2-3 using the same template. I do not have this info yet.\
+\
+
+\b \cf2 7. Analytics
+\b0 \cf2 \
+If you can add the lines for Google analytics. If you do not have the time, do not worry about it, I should be able to do it.\
+To add before </head>\
+------------------\
+<script type="text/javascript">\
+\
+  var _gaq = _gaq || [];\
+  _gaq.push(['_setAccount', 'UA-28741706-1']);\
+  _gaq.push(['_trackPageview']);\
+\
+  (function() \{\
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;\
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';\
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);\
+  \})();\
+\
+</script>\
+----------------\
+Could you also track when people change tab, maybe using the following when the user triggers the tab:\
+\pard\pardeftab720\sl300
+
+\f2\fs24 \cf3 _gaq.push(['_trackEvent', 'Tab', 'GoTo', 'Leo's Pad']);\
+\
+}

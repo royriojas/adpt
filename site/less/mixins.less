@@ -1,0 +1,214 @@
+/* 320 and Up _________________________________________________
+
+320 and Up
+Andy Clarke http://about.me/malarkey
+LESS Version: 2
+URL: http://stuffandnonsense.co.uk/projects/320andup/
+License: http://creativecommons.org/licenses/MIT/
+
+Includes:
+
+
+__________________________________________________________ */
+
+@basecol : rgb(123,172,200);	    // Base colour
+@compcol : spin(@basecol, 180);  	// Complementary colour
+
+// Links
+
+@linkcol : rgb(1,53,104);
+@linkcolhover : darken(@linkcol, 10);
+@linkcolvisited : @linkcolhover;
+@linkcolfocus : @linkcolhover;
+
+// greyscale
+
+@black : rgb(0,0,0);
+@darkgrey : lighten(@black, 25%);
+@grey : lighten(@black, 50%);
+@lightgrey : lighten(@black, 75%);
+@lightergrey : lighten(@black, 90%);
+@white : rgb(255,255,255);
+
+// colour palettes
+
+@col_l1 : lighten(@basecol, 5%);
+@col_l2 : lighten(@basecol, 10%);
+@col_l3 : lighten(@basecol, 15%);
+@col_l4 : lighten(@basecol, 20%);
+
+@col_d1 : darken(@basecol, 5%);
+@col_d2 : darken(@basecol, 10%);
+@col_d3 : darken(@basecol, 15%);
+@col_d4 : darken(@basecol, 20%);
+
+@comp_l1 : lighten(@compcol, 5%);
+@comp_l2 : lighten(@compcol, 10%);
+@comp_l3 : lighten(@compcol, 15%);
+@comp_l4 : lighten(@compcol, 20%);
+
+@comp_d1 : darken(@compcol, 5%);
+@comp_d2 : darken(@compcol, 10%);
+@comp_d3 : darken(@compcol, 15%);
+@comp_d4 : darken(@compcol, 20%);
+
+// Font Stacks
+#font {
+  .shorthand(@weight: normal, @size: 14px, @lineHeight: 20px) {
+    font-size: @size;
+    font-weight: @weight;
+    line-height: @lineHeight;
+  }
+  .sans-serif(@weight: normal, @size: 14px, @lineHeight: 20px) {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: @size;
+    font-weight: @weight;
+    line-height: @lineHeight;
+  }
+  .serif(@weight: normal, @size: 14px, @lineHeight: 20px) {
+    font-family: "Georgia", Times New Roman, Times, sans-serif;
+    font-size: @size;
+    font-weight: @weight;
+    line-height: @lineHeight;
+  }
+  .monospace(@weight: normal, @size: 12px, @lineHeight: 20px) {
+    font-family: "Monaco", Courier New, monospace;
+    font-size: @size;
+    font-weight: @weight;
+    line-height: @lineHeight;
+  }
+  
+  .cabin() {
+    .sans-serif(@arguments);
+    font-family:'Cabin Condensed', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  .muli() {
+    .sans-serif(@arguments);
+    font-family:'Muli', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+}
+
+// layout
+
+@baseline : 1.5em;
+
+// MIXINS
+
+.clearfix() {
+  zoom : 1;
+
+  &:before, 
+  &:after {
+    content : "\0020"; 
+    display : block; 
+    height : 0; 
+    overflow : hidden; 
+  }
+
+  &:after {
+    clear : both; 
+  }
+}
+
+// borderradius
+
+.rounded(@radius:3px) {
+  -webkit-border-radius : @radius;
+  -moz-border-radius : @radius;
+  border-radius : @radius; 
+}
+
+.bordered(@top-color: #eee, @right-color: #eee, @bottom-color: #eee, @left-color: #eee) {
+  border-top : solid 1px @top-color;
+  border-left : solid 1px @left-color;
+  border-right : solid 1px @right-color;
+  border-bottom : solid 1px @bottom-color; 
+}
+
+.border-radius(@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+  -webkit-border-top-right-radius : @topright;
+  -webkit-border-bottom-right-radius : @bottomright;
+  -webkit-border-bottom-left-radius : @bottomleft;
+  -webkit-border-top-left-radius : @topleft;
+  -moz-border-radius-topright : @topright;
+  -moz-border-radius-bottomright : @bottomright;
+  -moz-border-radius-bottomleft : @bottomleft;
+  -moz-border-radius-topleft : @topleft;
+  border-top-right-radius : @topright;
+  border-bottom-right-radius : @bottomright;
+  border-bottom-left-radius : @bottomleft;
+  border-top-left-radius : @topleft; 
+}
+
+// boxshadow
+
+.drop-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1) {
+  -webkit-box-shadow : @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+  -moz-box-shadow : @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+  box-shadow : @x-axis @y-axis @blur rgba(0, 0, 0, @alpha); 
+}
+
+.inset-shadow(@horizontal:0, @vertical:1px, @blur:2px, @alpha: 0.4) {
+  -webkit-box-shadow : inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+  -moz-box-shadow : inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+  box-shadow : inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha); 
+}
+
+.box-shadow(@arguments) {
+  -webkit-box-shadow : @arguments;
+  -moz-box-shadow : @arguments;
+  -ms-box-shadow: @arguments;
+  box-shadow : @arguments; 
+}
+
+.transition(@duration: 1s, @ease: ease-out) {
+  -webkit-transition: all @duration @ease;
+  -moz-transition: all @duration @ease;
+  -ms-transition: all @duration @ease;
+  transition: all @duration @ease;
+}
+
+// Sizing shortcuts
+.size(@width: 5px, @height: 5px) {
+  height: @height;
+  width: @width;
+}
+
+.scale(@ratio:1){
+  -webkit-transform:scale(@ratio);
+  -moz-transform:scale(@ratio);
+  -ms-transform:scale(@ratio);
+  transform:scale(@ratio);
+}
+
+.gradient(@color: #F5F5F5, @start: #EEE, @stop: #FFF) {
+  background: @color;
+  background: -webkit-gradient(linear,
+                               left bottom,
+                               left top,
+                               color-stop(0, @start),
+                               color-stop(1, @stop));
+  background: -ms-linear-gradient(bottom,
+                                  @start,
+                                  @stop);
+  background: -moz-linear-gradient(center bottom,
+                                   @start 0%,
+                                   @stop 100%);
+}
+
+.box-sizing (@bs: border-box) {
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  box-sizing:border-box;
+}
+
+// Input placeholder text
+.placeholder(@color: @grayLight) {
+  :-moz-placeholder {
+    color: @color;
+  }
+  ::-webkit-input-placeholder {
+    color: @color;
+  }
+}
