@@ -28,7 +28,7 @@
       if (!supportTransitions) {
         $gallery.fadeIn();
       }
-      $gallery.nivoSlider({ pauseTime : 4000 });
+      $gallery.nivoSlider({ pauseTime : 4000, effect: 'fade' });
     });
     
     
