@@ -185,7 +185,7 @@ footer a:hover {
   display: block;
   cursor: pointer;
   position: absolute;
-  top: 5px;
+  top: 0px;
   left: 25px;
 }
 .kidapt-logo a span {
@@ -193,7 +193,7 @@ footer a:hover {
 }
 header {
   padding: 0 20px;
-  padding-top: 60px;
+  padding-top: 103px;
   position: relative;
 }
 nav {
@@ -209,7 +209,7 @@ nav {
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #efedf7), color-stop(1, #fffcfd));
   background: -ms-linear-gradient(bottom, #efedf7, #fffcfd);
   background: -moz-linear-gradient(center bottom, #efedf7 0%, #fffcfd 100%);
-  padding-left: 280px;
+  padding-left: 18px;
 }
 #content section {
   padding: 0 30px;
