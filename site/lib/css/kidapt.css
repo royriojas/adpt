@@ -137,7 +137,7 @@ body.team #content section[data-id=team] {
 .gallery {
   display: none;
   opacity: 0;
-  width: 890px;
+  width: 810px;
   margin: 0 auto;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
@@ -185,8 +185,8 @@ footer a:hover {
   display: block;
   cursor: pointer;
   position: absolute;
-  top: 5px;
-  left: 25px;
+  top: 1px;
+  left: 30px;
 }
 .kidapt-logo a span {
   display: none;
@@ -209,7 +209,7 @@ nav {
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #efedf7), color-stop(1, #fffcfd));
   background: -ms-linear-gradient(bottom, #efedf7, #fffcfd);
   background: -moz-linear-gradient(center bottom, #efedf7 0%, #fffcfd 100%);
-  padding-left: 280px;
+  padding-left: 300px;
 }
 #content section {
   padding: 0 30px;
