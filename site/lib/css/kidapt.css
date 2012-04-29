@@ -47,10 +47,10 @@ body #content > section {
   top: 0;
   height: 0;
 }
-nav li {
+.nav li {
   display: inline-block;
 }
-nav a {
+.nav a {
   font-weight: normal;
   text-decoration: none;
   color: #9d5298;
@@ -70,11 +70,11 @@ nav a {
   font-size: 20px;
   line-height: 40px;
 }
-nav a:hover {
+.nav a:hover {
   font-weight: normal;
   text-decoration: underline;
 }
-nav a:hover {
+.nav a:hover {
   -webkit-transform: scale(1.25);
   -moz-transform: scale(1.25);
   -ms-transform: scale(1.25);
@@ -82,7 +82,7 @@ nav a:hover {
   background: rgba(157, 82, 152, 0.05);
   text-decoration: none;
 }
-body.home nav a[href='#current=home'] {
+body.home .nav a[href='#current=home'] {
   font-weight: bold;
   color: #a2c633;
   -webkit-transform: scale(1.25);
@@ -95,7 +95,7 @@ body.home #content section[data-id=home] {
   opacity: 1;
   height: auto;
 }
-body.aboutkidapt nav a[href='#current=aboutkidapt'] {
+body.aboutkidapt .nav a[href='#current=aboutkidapt'] {
   font-weight: bold;
   color: #a2c633;
   -webkit-transform: scale(1.25);
@@ -108,7 +108,7 @@ body.aboutkidapt #content section[data-id=aboutkidapt] {
   opacity: 1;
   height: auto;
 }
-body.leospad nav a[href='#current=leospad'] {
+body.leospad .nav a[href='#current=leospad'] {
   font-weight: bold;
   color: #a2c633;
   -webkit-transform: scale(1.25);
@@ -121,7 +121,7 @@ body.leospad #content section[data-id=leospad] {
   opacity: 1;
   height: auto;
 }
-body.team nav a[href='#current=team'] {
+body.team .nav a[href='#current=team'] {
   font-weight: bold;
   color: #a2c633;
   -webkit-transform: scale(1.25);
@@ -162,7 +162,7 @@ body.team #content section[data-id=team] {
   display: block;
   opacity: 1;
 }
-footer {
+.footer {
   border-top: 2px solid #bd99be;
   width: 890px;
   margin: 0 auto;
@@ -170,12 +170,12 @@ footer {
   margin-top: 20px;
   text-align: center;
 }
-footer a {
+.footer a {
   font-weight: normal;
   text-decoration: none;
   color: #9d5298;
 }
-footer a:hover {
+.footer a:hover {
   font-weight: normal;
   text-decoration: underline;
 }
@@ -192,12 +192,12 @@ footer a:hover {
 .kidapt-logo a span {
   display: none;
 }
-header {
+.header {
   padding: 0 20px;
   padding-top: 103px;
   position: relative;
 }
-nav {
+.nav {
   border: 4px solid #dbc6de;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -300,7 +300,8 @@ nav {
   margin-left: 240px;
   margin-right: 30px;
 }
-.team-member .bio hgroup h2, .team-member .bio hgroup h3 {
+.team-member .bio .hgroup h2,
+.team-member .bio .hgroup h3 {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: ;
@@ -311,7 +312,7 @@ nav {
   font-size: 26px;
   line-height: 32px;
 }
-.team-member .bio hgroup h3 {
+.team-member .bio .hgroup h3 {
   font-size: 20px;
   line-height: 26px;
   margin-bottom: 15px;
